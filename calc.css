@@ -48,7 +48,7 @@ h1 {
     margin-top: 25px;
 }
 
-.inputBtns, .mathBtns {
+.inputBtns {
     text-align: center;
     grid-row: span 1;
     border: 2px solid black;
@@ -57,6 +57,10 @@ h1 {
     font-weight: bold;
     line-height: 79.1667px;
     background-color: #8c8c8c;
+}
+
+.inputBtns:hover, #delete:hover {
+    background-color: #666666;
 }
 
 .blue:hover {
@@ -71,10 +75,6 @@ h1 {
     background-color: #00b300;
 }
 
-.inputBtns:hover, #delete:hover{
-    background-color: #666666;
-}
-
 #clear {
     grid-column-start: 2;
 }
@@ -86,6 +86,7 @@ h1 {
 }
 
 #input {
+    overflow: auto;
     width: 98.25%;
     height: 110px;
     font-size: 3em;

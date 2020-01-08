@@ -24,7 +24,7 @@ function grid(gridSize){
         }
         else {
             const text = {15:'/', 16:'X', 17:'-', 18:'+', 19:'='};
-            gridItem.classList.add('mathBtns');
+            gridItem.classList.add('inputBtns');
             gridItem.textContent = text[i];
 
             if(i == 14) gridItem.setAttribute('id', 'delete');
@@ -43,6 +43,7 @@ const input = document.querySelectorAll('.inputBtns');
 
 input.forEach(input => input.addEventListener('click', () => {
     const display = document.querySelector('#input');
+    if(display.textContent == '0') display.textContent = '';
     display.textContent += input.textContent;
 }));
 
