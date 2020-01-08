@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    /*background-image: url('numbers.jpg');
+    background-repeat: no-repeat;
+    background-position: center;*/
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.grid-container {
+    margin-left: auto;
+    margin-right: auto;
+    height: 700px;
+    min-width: 600px;
+    max-width: 600px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: lightgray;
+    padding: 10px;
+}
+ 
+.inputGrid {
+    float: left;
+    display: grid;
+    margin-left: 20px;
+    grid-template: repeat(6, 1fr) / repeat(3, 1fr);
+    width: 400px;
+    height: 500px;
+    grid-gap: 5px;    
+}
+
+.mathGrid {
+    float: right;
+    display: grid;
+    grid-template: repeat(6, 1fr) / repeat(1, 100px);
+    grid-gap: 5px;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 150px;
+}
+
+.inputGrid, .mathGrid{
+    margin-top: 25px;
+}
+
+.inputBtns, .mathBtns {
+    text-align: center;
+    grid-row: span 1;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 2em;
+    font-weight: bold;
+    line-height: 79.1667px;
+    background-color: #8c8c8c;
+}
+
+.blue:hover {
+    background-color: #0066ff;
+}
+
+.red:hover {
+    background-color: #ff1a1a;
+}
+
+#equals:hover {
+    background-color: #00b300;
+}
+
+.inputBtns:hover, #delete:hover{
+    background-color: #666666;
+}
+
+#clear {
+    grid-column-start: 2;
+}
+
+#delete {
+    background-image: url('delete.png');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#input {
+    width: 98.25%;
+    height: 110px;
+    font-size: 3em;
+    text-align: right;
+    line-height: 110px;
+    border-radius: 2px;
+    background-color: white;
+    padding: 5px;
+}
+
+
+
