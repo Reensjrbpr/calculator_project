@@ -1,4 +1,5 @@
 let gridSize = 19;
+const text = {10:'+/-', 11:'0', 12:'.', 13: 'C', 15:'/', 16:'X', 17:'-', 18:'+', 19:'='};
 
 function grid(gridSize){
     const inputDiv = document.querySelector('.inputGrid');
@@ -9,7 +10,6 @@ function grid(gridSize){
         const gridItem = document.createElement('div');
         
         if(i < 14){
-            const text = {10:'+/-', 11:'0', 12:'.', 13: 'C'};
             gridItem.classList.add('inputBtns');
     
             if(i >= 1 && i <= 3) gridItem.textContent = i + 6;
@@ -23,7 +23,7 @@ function grid(gridSize){
             inputDiv.appendChild(gridItem);
         }
         else {
-            const text = {15:'/', 16:'X', 17:'-', 18:'+', 19:'='};
+         
             gridItem.classList.add('inputBtns');
             gridItem.textContent = text[i];
 
@@ -44,8 +44,17 @@ const input = document.querySelectorAll('.inputBtns');
 input.forEach(input => input.addEventListener('click', () => {
     const display = document.querySelector('#input');
     if(display.textContent == '0') display.textContent = '';
+    
     display.textContent += input.textContent;
+
+    if(input.textContent == text[13]) display.textContent = '0';
+   // else if(input.textContent == text[12]) 
+    
 }));
+   
+
+
+
 
 function operate(operator, ...input){
 
