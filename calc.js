@@ -43,21 +43,39 @@ const input = document.querySelectorAll('.inputBtns');
 
 input.forEach(input => input.addEventListener('click', () => {
     const display = document.querySelector('#input');
+
     if(display.textContent == '0') display.textContent = '';
-    
+
     display.textContent += input.textContent;
 
     if(input.textContent == text[13]) display.textContent = '0';
-   // else if(input.textContent == text[12]) 
-    
+    if(input.textContent == text[15] ||
+        input.textContent == text[16] ||
+        input.textContent == text[17] ||
+        input.textContent == text[18]
+        ){
+
+        let numbers = [];
+        let operators = [];
+        let num;
+       
+        if(numbers.length == 0){
+            num = display.textContent.substr(0, display.textContent.length - 1);
+        }
+        else {         
+            num = display.textContent.substr(num.length + 2, display.textContent.length - 1);
+        }
+        
+        numbers.push(num);
+        operators.push(input.textContent);
+
+
+        operate(numbers, operators);
+    }
 }));
-   
 
-
-
-
-function operate(operator, ...input){
-
+function operate(numbers, operators){
+    alert(numbers);
 }
 
 function add(){
