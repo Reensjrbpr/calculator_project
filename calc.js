@@ -40,6 +40,9 @@ function grid(gridSize){
 grid(gridSize);
 
 const input = document.querySelectorAll('.inputBtns');
+let numbers = [];
+let operators = [];
+let num;
 
 input.forEach(input => input.addEventListener('click', () => {
     const display = document.querySelector('#input');
@@ -48,34 +51,43 @@ input.forEach(input => input.addEventListener('click', () => {
 
     display.textContent += input.textContent;
 
-    if(input.textContent == text[13]) display.textContent = '0';
-    if(input.textContent == text[15] ||
+    if(input.textContent == text[13]){
+        display.textContent = '0';
+        numbers = [];
+        operators = [];
+        num = '';
+    }
+    else if(input.textContent == text[15] ||
         input.textContent == text[16] ||
         input.textContent == text[17] ||
         input.textContent == text[18]
         ){
-
-        let numbers = [];
-        let operators = [];
-        let num;
        
         if(numbers.length == 0){
             num = display.textContent.substr(0, display.textContent.length - 1);
         }
         else {         
-            num = display.textContent.substr(num.length + 2, display.textContent.length - 1);
+            num = display.textContent.substr(num.length + 1, display.textContent.length - 1);
         }
         
         numbers.push(num);
         operators.push(input.textContent);
+    }
+    if(input.textContent == text[19]){
 
+        num = display.textContent.substr(num.length + 1, display.textContent.length - 1);
+        numbers.push(num);
 
         operate(numbers, operators);
+        numbers = [];
+        operators = [];
+        num = '';
     }
 }));
 
 function operate(numbers, operators){
     alert(numbers);
+    alert(operators);
 }
 
 function add(){
