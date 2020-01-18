@@ -1,6 +1,7 @@
 let gridSize = 19;
 const text = {10:'+/-', 11:'0', 12:'.', 13: 'C', 15:'/', 16:'X', 17:'-', 18:'+', 19:'='};
 
+//GENERATE BUTTONS
 function grid(gridSize){
     const inputDiv = document.querySelector('.inputGrid');
     const mathDiv = document.querySelector('.mathGrid');
@@ -39,55 +40,64 @@ function grid(gridSize){
 
 grid(gridSize);
 
+
 const input = document.querySelectorAll('.inputBtns');
+let numInput = [];
 let numbers = [];
 let operators = [];
-let num;
+let num = '';
 
+//POPULATE DISPLAY
 input.forEach(input => input.addEventListener('click', () => {
     const display = document.querySelector('#input');
 
     if(display.textContent == '0') display.textContent = '';
 
     display.textContent += input.textContent;
+    
+    num = input.textContent;
+    numInput.push(num);
 
+    //CLEAR BUTTON
     if(input.textContent == text[13]){
         display.textContent = '0';
+        numInput = [];
         numbers = [];
         operators = [];
         num = '';
     }
-    else if(input.textContent == text[15] ||
-        input.textContent == text[16] ||
-        input.textContent == text[17] ||
-        input.textContent == text[18]
-        ){
-       
-        if(numbers.length == 0){
-            num = display.textContent.substr(0, display.textContent.length - 1);
-        }
-        else {         
-            num = display.textContent.substr(num.length + 1, display.textContent.length - 1);
-        }
-        
-        numbers.push(num);
-        operators.push(input.textContent);
-    }
+
+    //EQUALS BUTTON
     if(input.textContent == text[19]){
-
-        num = display.textContent.substr(num.length + 1, display.textContent.length - 1);
-        numbers.push(num);
-
-        operate(numbers, operators);
-        numbers = [];
-        operators = [];
-        num = '';
-    }
+            operate(numInput);
+            numInput = [];
+            numbers = [];
+            operators = [];
+            num = '';
+        }
 }));
 
-function operate(numbers, operators){
-    alert(numbers);
-    alert(operators);
+function operate(numInput){
+    
+    //SEPARATE NUMBERS & OPERATORS
+    let op1 = -1;
+    for(let i = 0; i < numInput.length + 1; i++){
+        if(numInput[i] == text[15] ||
+            numInput[i] == text[16] ||
+            numInput[i] == text[17] ||
+            numInput[i] == text[18] ||
+            numInput[i] == text[19]){
+
+                let index = numInput.indexOf(numInput[i], i - 1);
+
+                num = numInput.slice(op1 + 1, index).join('');
+                numbers.push(num);
+                if(numInput[i] !== text[19]) operators.push(numInput[i]);
+                op1 = i;
+        }
+    }
+
+    
 }
 
 function add(){
