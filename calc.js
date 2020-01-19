@@ -69,7 +69,8 @@ input.forEach(input => input.addEventListener('click', () => {
 
     //EQUALS BUTTON
     if(input.textContent == text[19]){
-            operate(numInput);
+        let solution = operate(numInput);
+        display.textContent = solution;
             numInput = [];
             numbers = [];
             operators = [];
@@ -97,21 +98,42 @@ function operate(numInput){
         }
     }
 
-    
+    //DO MATH
+    let solution = 0;
+    let num1 = 0;
+    let num2 = 0;
+
+    for(let r = 0; r < operators.length; r++){
+            if(r == 0){
+                num1 = Number(numbers[r]);
+                num2 = Number(numbers[r + 1]);
+            }
+            else{
+                num1 = solution;
+                num2 = Number(numbers[r + 1]);
+            }
+
+            if(operators[r] == text[15]) solution = divide(num1, num2);
+            else if(operators[r] == text[16]) solution = multiply(num1, num2);
+            else if(operators[r] == text[17]) solution = subtract(num1, num2);
+            else if(operators[r] == text[18]) solution = add(num1, num2);
+    }
+
+    return solution;
 }
 
-function add(){
-
+function add(num1, num2){
+    return num1 + num2;
 }
 
-function subtract(){
-
+function subtract(num1, num2){
+    return num1 - num2;
 }
 
-function multiply(){
-
+function multiply(num1, num2){
+    return num1 * num2;
 }
 
-function divide(){
-
+function divide(num1, num2){
+    return num1 / num2;
 }
